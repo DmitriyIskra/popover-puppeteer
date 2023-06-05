@@ -17,7 +17,7 @@ describe('test popover', () => {
     test('open popup of popover', async () => {
         await page.goto('http://localhost:9000');
 
-        await page.waitFor('.container');
+        await page.waitForSelector('.container');
 
         const button = await page.$('.popover-button');
 
@@ -25,13 +25,13 @@ describe('test popover', () => {
 
         await page.screenshot({path: 'screenshot-open.png'})
 
-        await page.waitFor('.container .popover__wr-popup.active');
+        await page.waitForSelector('.container .popover__wr-popup.active');
     })
 
     test('close popup of popover', async () => {
         await page.goto('http://localhost:9000');
 
-        await page.waitFor('.container');
+        await page.waitForSelector('.container');
 
         const button = await page.$('.popover-button');
 
