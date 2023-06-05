@@ -1,4 +1,4 @@
-import Popover2 from "./popover/popover";
+import Popover2 from './popover/popover';
 
 const container = document.querySelector('.container');
 
