@@ -5,11 +5,14 @@ describe('test popover', () => {
     let page;
 
     beforeEach(async () => {
-        browser = await puppeteer.launch({
-            headless: false,
-            slowMo: 100,
-            devtools: true,
-        });
+
+        browser = await puppeteer.launch()
+
+        // browser = await puppeteer.launch({
+        //     // headless: false,
+        //     // slowMo: 100,
+        //     // devtools: true,
+        // });
 
         page = await browser.newPage();
     })
@@ -33,7 +36,7 @@ describe('test popover', () => {
 
         await page.waitForSelector('.container');
 
-        const button = await page.$('.popover-button');
+        const button = await page.$('.popover-button'); 
 
         await button.click();
         await button.click();
