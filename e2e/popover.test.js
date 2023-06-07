@@ -6,7 +6,7 @@ describe('test popover', () => {
 
     beforeEach(async () => {
 
-        browser = await puppeteer.launch()
+        //browser = await puppeteer.launch()
 
         // browser = await puppeteer.launch({
         //     // headless: false,
