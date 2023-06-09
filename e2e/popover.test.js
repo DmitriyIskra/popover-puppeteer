@@ -1,24 +1,40 @@
 import puppeteer from "puppeteer";
+import { fork } from 'child_process';
+
+jest.setTimeout(50000);
 
 describe('test popover', () => {
     let browser;
     let page;
+    let server;
+    const baseUrl = 'http://localhost:9000';
 
     beforeEach(async () => {
+
+        server = fork(`${__dirname}/e2e.server.js`);
+        await new Promise((resolve, reject) => {
+            server.on('error', reject);
+            server.on('message', (message) => {
+                if (message === 'ok') {
+                    resolve();
+                }
+            });
+        });
+
 
         browser = await puppeteer.launch()
 
         // browser = await puppeteer.launch({
-        //     // headless: false,
+        //     // headless: false, 
         //     // slowMo: 100,
         //     // devtools: true,
         // });  
 
-        page = await browser.newPage();
+        page = await browser.newPage(); 
     })
 
     test('open popup of popover', async () => {
-        await page.goto('http://localhost:9000');
+        await page.goto(baseUrl);
 
         await page.waitForSelector('.container');
 
@@ -32,7 +48,7 @@ describe('test popover', () => {
     })
 
     test('close popup of popover', async () => {
-        await page.goto('http://localhost:9000');
+        await page.goto(baseUrl);
 
         await page.waitForSelector('.container');
 
@@ -45,6 +61,7 @@ describe('test popover', () => {
     })
 
     afterEach(async () => {
-        await browser.close()
+        await browser.close();
+        server.kill();
     })
 })
