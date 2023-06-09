@@ -18,7 +18,7 @@ describe('test popover', () => {
     })
 
     test('open popup of popover', async () => {
-        await page.goto('http://localhost:9000');
+        // await page.goto('http://localhost:9000');
 
         await page.waitForSelector('.container');
 
@@ -32,7 +32,7 @@ describe('test popover', () => {
     })
 
     test('close popup of popover', async () => {
-        await page.goto('http://localhost:9000');
+        // await page.goto('http://localhost:9000');
 
         await page.waitForSelector('.container');
 
